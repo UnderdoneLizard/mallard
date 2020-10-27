@@ -28,6 +28,7 @@ As of now I think I should have the first sprint done by the end of the day tomo
 DM's... I'm not sure how to do them so I don't know how long it would take. Refactoring to react is something I am planning on doing after the course, I don't think I'll be at a point where I'll want to refactor by next friday. 
 
 ![erd](./erd.png)
+I forgot header and Icon images in the user
 
 
 
