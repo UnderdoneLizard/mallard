@@ -8,4 +8,6 @@ router.get("/", (req,res) => {
     res.render('auth/test');
 })
 
+
+
 module.exports = router;
