@@ -6,8 +6,8 @@ const userSchema = mongoose.Schema({
     email: { type: String, required: true, unique: true},
     password: {type: String, required: true},
     // quacks: [{type: mongoose.Schema.Types.ObjectId, ref: 'Quack'}],
-    // following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-    // followers:[{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    followers:[{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     // likes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Quack'}],
     // comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 },{
