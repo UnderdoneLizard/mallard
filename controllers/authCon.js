@@ -13,12 +13,16 @@ router.get("/", (req,res) => {
 
 
 // register route
+router.get('/register', async (req, res) => {
+    res.render('auth/register', {message:''})
+})
+
 router.post('/register', async (req, res) => {
     console.log(req.body);
     try{
         const foundUser = await db.User.findOne({$or:[{email: req.body.email}, {username: req.body.username}]})
         //needs to be changed
-        if(foundUser) return res.render("auth/test")
+        if(foundUser) return res.render("auth/register", {message:'Username or Email taken, please use another'})
 
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(req.body.password, salt);
