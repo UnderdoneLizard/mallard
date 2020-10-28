@@ -91,5 +91,22 @@ router.put('/:id/follow', async (req, res) => {
     }
 })
 
+//unfollow 
+router.put('/:id/unfollow', async (req, res) => {
+    try {
+        
+        const user = await db.User.findById(req.session.currentUser.id);
+        const tUser = await db.User.findById(req.params.id);
+        user.following.remove(tUser.id);
+        tUser.followers.remove(user.id);
+        user.save();
+        tUser.save();
+        res.redirect('/');
+
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal Server Error", err: error });
+    }
+})
 
 module.exports = router;
