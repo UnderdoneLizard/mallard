@@ -75,4 +75,21 @@ router.delete('/logout', async (req, res) => {
 })
 
 
+//follow route
+router.put('/:id/follow', async (req, res) => {
+    try{
+        const user = await db.User.findById(req.session.currentUser.id);
+        const tUser = await db.User.findById(req.params.id);
+        user.following.push(tUser.id);
+        tUser.followers.push(user.id);
+        user.save();
+        tUser.save();
+        res.redirect('/');
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal Server Error", err: error });
+    }
+})
+
+
 module.exports = router;
