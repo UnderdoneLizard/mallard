@@ -38,17 +38,22 @@ router.post('/register', async (req, res) => {
 })
 
 // login route
+
+router.get('/login', async (req, res) => {
+    res.render('auth/login', {message:''})
+})
+
 router.post('/login', async (req, res) => {
     try {
         const foundUser = await db.User.findOne({email: req.body.email});
         if(!foundUser) {
             //needs to be changed
-            return res.render('auth/test');
+            return res.render('auth/login', {message:"Email or Passowrd Incorrect"});
         }
         const match = await bcrypt.compare(req.body.password, foundUser.password);
         if(!match){
              //needs to be changed
-            return res.render('auth/test');
+            return res.render('auth/login', {message:"Email or Passowrd Incorrect"});
         }
         req.session.currentUser = {
             username: foundUser.username,
