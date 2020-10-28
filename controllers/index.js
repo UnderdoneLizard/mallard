@@ -1,3 +1,4 @@
 module.exports = {
-    auth: require('./authCon')
+    auth: require('./authCon'),
+    quack: require('./quackCon')
 }

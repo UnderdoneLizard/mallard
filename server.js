@@ -50,6 +50,8 @@ app.use(async (req, res, next) => {
 /* Routes */
 app.use('/', controllers.auth)
 
+app.use('/quack', controllers.quack)
+
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 })

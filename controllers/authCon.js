@@ -109,4 +109,9 @@ router.put('/:id/unfollow', async (req, res) => {
     }
 })
 
+//deleteUser route
+
+
+//editUser route
+
 module.exports = router;
