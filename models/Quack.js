@@ -9,6 +9,8 @@ const quackSchema = mongoose.Schema({
     //comments:,
     //reposts:,
     //reference:,
+}, {
+    timestamps: true,
 })
 
 
