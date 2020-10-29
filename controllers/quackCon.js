@@ -45,6 +45,23 @@ router.post('/create', async (req,res) => {
     }
 })
 
+//show quack
+router.get('/:id', async (req, res) => {
+    try{
+        
+        const quack = await db.Quack.findById(req.params.id);
+        context = {
+            quack: quack
+        };
+        res.render('quack/show', context);
+
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal server error" });
+    }
+})
+
+
 //delete quack
 
 router.delete('/:id/delete', async (req, res) => {
