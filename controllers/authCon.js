@@ -109,6 +109,22 @@ router.put('/:id/unfollow', async (req, res) => {
     }
 })
 
+//like post
+router.put('/:id/like', async (req, res) => {
+    try {
+        const user = await db.User.findById(req.session.currentUser.id);
+        const quack = await db.Quack.findById(req.params.id);
+        user.likes.push(quack.id);
+        quack.likes.push(user.id);
+        user.save();
+        quack.save();
+        res.redirect('/');
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal Server Error", err: error });
+    }
+})
+
 //deleteUser route
 router.delete('/delete', async (req, res) => {
     try{
