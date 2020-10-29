@@ -2,10 +2,12 @@
     <% if (user) { %>
         <a href="/">Home</a>
         <a href="/<%= user.id %>">Profile</a>
+        <a href="/quack/create">Quack</a>
         <form action='/logout?_method=DELETE' method="POST">
             <input type="submit" value="logout"/>
         </form>
-    <% } %>
+    <% } else {%>
         <a href="/register">Register</a>
         <a href="/login">Login</a>
+    <% } %> 
 </nav>

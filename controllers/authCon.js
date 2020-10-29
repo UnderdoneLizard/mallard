@@ -17,25 +17,6 @@ router.get("/", (req,res) => {
     res.render('users', {users: users})
 }) */
 
-
-//render profile page
-router.get('/:id', async (req, res) => {
-    try{
-
-        const tUser = await db.User.findById(req.params.id)
-        const quacks = await db.Quack.find({user: tUser.id})
-        const context = {
-            tUser: tUser,
-            quacks: quacks
-        }
-        res.render('auth/profile', context)
-
-    } catch(error) {
-        console.log(error);
-        res.send({ message: "Internal Server Error", err: error });
-    }
-})
-
 // register route
 router.get('/register', async (req, res) => {
     res.render('auth/register', {message:''})
@@ -98,6 +79,23 @@ router.delete('/logout', async (req, res) => {
     res.redirect('/');
 })
 
+//render profile page
+router.get('/:id', async (req, res) => {
+    try{
+
+        const tUser = await db.User.findById(req.params.id)
+        const quacks = await db.Quack.find({user: tUser.id})
+        const context = {
+            tUser: tUser,
+            quacks: quacks
+        }
+        res.render('auth/profile', context)
+
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal Server Error", err: error });
+    }
+})
 
 //follow route
 router.put('/:id/follow', async (req, res) => {

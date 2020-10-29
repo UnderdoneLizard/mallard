@@ -37,7 +37,7 @@ router.post('/create', async (req,res) => {
         user.quacks.push(quack.id);
         user.save();
         quack.save();
-        res.redirect(`/${req.currentUser.id}`)
+        res.redirect(`/${req.session.currentUser.id}`)
 
     } catch(error) {
         console.log(error);
