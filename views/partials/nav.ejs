@@ -1,0 +1,11 @@
+<nav>
+    <% if (user) { %>
+        <a href="/">Home</a>
+        <a href="/<%= user.id %>">Profile</a>
+        <form action='/logout?_method=DELETE' method="POST">
+            <input type="submit" value="logout"/>
+        </form>
+    <% } %>
+        <a href="/register">Register</a>
+        <a href="/login">Login</a>
+</nav>

@@ -6,6 +6,7 @@
     <title><%= tUser.displayName %>'s page </title>
 </head>
 <body>
+    <%- include("../partials/nav") %> 
     <%= tUser.displayName %> <br>
     @<%= tUser.username %> 
     <% quacks.forEach( quack => { %> 
