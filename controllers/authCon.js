@@ -109,7 +109,7 @@ router.put('/:id/unfollow', async (req, res) => {
     }
 })
 
-//like post
+//like quack
 router.put('/:id/like', async (req, res) => {
     try {
         const user = await db.User.findById(req.session.currentUser.id);
