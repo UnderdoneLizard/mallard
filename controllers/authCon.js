@@ -116,6 +116,9 @@ router.put('/:id/like', async (req, res) => {
         const quack = await db.Quack.findById(req.params.id);
         user.likes.push(quack.id);
         quack.likes.push(user.id);
+        if( quack.dislikes.includes(user.id)){
+            quack.dislikes.remove(user.id)
+        }
         user.save();
         quack.save();
         res.redirect('/');
@@ -142,6 +145,23 @@ router.put('/:id/unlike', async (req, res) => {
 })
 
 //dislike route
+router.put('/:id/dislike', async (req,res) => {
+    try {
+
+        const user = await db.User.findById(req.session.currentUser.id);
+        const quack = await db.Quack.findById(req.params.id);
+        quack.dislikes.push(user.id);
+        if(quack.likes.includes(user.id)) quack.likes.remove(user.id);
+        if(user.likes.includes(quack.id)) user.likes.remove(quack.id);
+        user.save();
+        quack.save();
+        res.redirect('/');
+
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal Server Error", err: error });
+    }
+})
 
 //deleteUser route
 router.delete('/delete', async (req, res) => {
