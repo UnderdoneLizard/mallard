@@ -26,8 +26,11 @@ router.get('/', async (req, res) => {
 router.post('/create', async (req,res) => {
     try{
 
+        const user = await db.User.findById(req.session.currentUser.id);
         const quack = await db.Quack.create(req.body);
-        quack.user = req.session.currentUser.id;
+        quack.user = user.id;
+        quack.username = user.username;
+        quack.displayName = user.displayName;
         quack.save()
         res.redirect('/')
 
