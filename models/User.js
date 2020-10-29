@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema({
     displayName: { type: String, required: true},
     email: { type: String, required: true, unique: true},
     password: {type: String, required: true},
-    // quacks: [{type: mongoose.Schema.Types.ObjectId, ref: 'Quack'}],
+    quacks: [{type: mongoose.Schema.Types.ObjectId, ref: 'Quack'}],
     following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     followers:[{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     likes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Quack'}],

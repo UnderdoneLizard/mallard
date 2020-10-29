@@ -22,6 +22,9 @@ router.get('/', async (req, res) => {
 
 //create quack
 // TODO render create quack page 
+router.get('/create', async (req,res) => {
+    res.render('quack/create');
+})
 
 router.post('/create', async (req,res) => {
     try{
@@ -31,8 +34,10 @@ router.post('/create', async (req,res) => {
         quack.user = user.id;
         quack.username = user.username;
         quack.displayName = user.displayName;
-        quack.save()
-        res.redirect('/')
+        user.quacks.push(quack.id);
+        user.save();
+        quack.save();
+        res.redirect(`/${req.currentUser.id}`)
 
     } catch(error) {
         console.log(error);
