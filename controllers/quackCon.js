@@ -3,6 +3,23 @@ const router = express.Router();
 
 const db = require("../models");
 
+/* all posts page */
+router.get('/', async (req, res) => {
+    try{
+
+        const quacks = await db.Quack.find();
+        context = {
+            quacks: quacks
+        }
+        res.render('quack/index', context)
+
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal server error" });
+    }
+})
+
+
 //create quack
 // TODO render create quack page 
 

@@ -11,6 +11,12 @@ router.get("/", (req,res) => {
     res.render('auth/test');
 })
 
+/* index for users // will be refactored to the search show and follower/ following show */
+/* router.get('/users', async (req, res) => {
+    const users = await db.Users.find();
+    res.render('users', {users: users})
+}) */
+
 
 // register route
 router.get('/register', async (req, res) => {
