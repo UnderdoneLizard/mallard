@@ -106,7 +106,7 @@ router.put('/:id/follow', async (req, res) => {
         tUser.followers.push(user.id);
         user.save();
         tUser.save();
-        res.redirect('/user');
+        res.redirect(`/user/${req.params.id}`);
     } catch(error) {
         console.log(error);
         res.send({ message: "Internal Server Error", err: error });
@@ -123,7 +123,7 @@ router.put('/:id/unfollow', async (req, res) => {
         tUser.followers.remove(user.id);
         user.save();
         tUser.save();
-        res.redirect('/user');
+        res.redirect(`/user/${req.params.id}`);
 
     } catch(error) {
         console.log(error);
