@@ -6,6 +6,9 @@
     <title>Edit</title>
 </head>
 <body>
-    You made it
+    <%- include("../partials/nav") %> 
+    <form action="/quack/<%= quack.id %>/edit?_method=PUT" method="POST">
+        <input type='text' required placeholder="Whats on your mind..." name="content" value="<%= quack.content %>"/>
+        <input type='submit' />
 </body>
 </html>

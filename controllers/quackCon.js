@@ -80,12 +80,27 @@ router.get('/:id/edit', async (req,res) => {
     }
 })
 
+router.put("/:id/edit", async (req, res) => {
+    try {
+
+        await db.Quack.findByIdAndUpdate(req.params.id, req.body, {
+            new: true
+        })
+
+        res.redirect(`/quack/${req.params.id}`);
+
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal server error" });
+    }
+})
+
 //delete quack
 
 router.delete('/:id/delete', async (req, res) => {
     try{
         const quack = await db.Quack.findById(req.params.id);
-        if (req.session.currentUser.id === quack.user){
+        if (req.session.currentUser.id == quack.user){
             const delQuack = await db.Quack.findByIdAndDelete(req.params.id);
             delQuack.likes.forEach(async (like) =>{
                 const user = await db.User.findById(like);
@@ -93,6 +108,8 @@ router.delete('/:id/delete', async (req, res) => {
                 user.save();
             })
             res.redirect('/');
+        } else {
+            res.send('you souldnt have seen that button');
         }
 
     } catch (error) {
