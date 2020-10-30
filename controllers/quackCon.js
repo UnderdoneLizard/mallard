@@ -107,7 +107,7 @@ router.delete('/:id/delete', async (req, res) => {
                 user.likes.remove(delQuack);
                 user.save();
             })
-            res.redirect('/');
+            res.redirect(`/user/${req.session.currentUser.id}`);
         } else {
             res.send('you souldnt have seen that button');
         }

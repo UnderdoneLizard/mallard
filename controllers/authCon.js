@@ -44,6 +44,33 @@ router.post('/register', async (req, res) => {
     }
 })
 
+//edit user
+router.get('/edit', (req,res) => {
+    res.render('auth/edit', {message:''});
+})
+
+router.put('/edit', async (req, res) => {
+    try {
+
+        const foundUser = await db.User.find({$or:[{email: req.body.email}, {username: req.body.username}]}).populate("quacks")
+        if(foundUser.length > 1 ) return res.render("auth/edit", {message:'Username or Email taken, please use another'})
+        await db.User.findByIdAndUpdate(req.session.currentUser.id, req.body, {
+            new: true
+        })
+        //TODO update user photo here too 
+        const user = foundUser[0];
+        user.quacks.forEach( quack => {
+            quack.username = req.body.username;
+            quack.displayName = req.body.displayName;
+            quack.save();
+        })
+        res.redirect(`/user/${req.session.currentUser.id}`)
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal Server Error", err: error });
+    }
+})
+
 // login route
 
 router.get('/login', async (req, res) => {
