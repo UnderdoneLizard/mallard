@@ -12,7 +12,7 @@
         <input type="submit" value="search"/>
     </form>
     <% if (results) { %>
-        <%= results %> 
+        <%- include("../partials/userList", {results: results}) %> 
     <% } %>
 </body>
 </html>

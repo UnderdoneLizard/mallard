@@ -1,0 +1,10 @@
+<ul>
+    <% results.forEach( result => { %> 
+
+        <a href="/user/<%= result.id %>">
+            <%= result.displayName %> 
+            @<%= result.username %> 
+        </a> <br>
+
+    <% }) %> 
+</ul>
