@@ -8,10 +8,10 @@
 <body>
     <%- include("../partials/nav") %> 
     <%= tUser.displayName %> <br>
-    @<%= tUser.username %> 
+    <p>@<%= tUser.username %></p> 
     <% quacks.forEach( quack => { %> 
-        <%= quack.dispalyName %> <br>
-        <%= quack.username %> <br>
+        <%= quack.displayName %> <br>
+        @<%= quack.username %> <br>
         <%= quack.content %>
 
     <% }) %> 
