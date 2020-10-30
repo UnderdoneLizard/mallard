@@ -8,7 +8,10 @@
 <body>
     <%- include("../partials/nav") %> 
     <%= tUser.displayName %> <br>
-    <p>@<%= tUser.username %></p> 
+    <p>@<%= tUser.username %></p> <br>
+    <a href="/user/<%= tUser.id %>/followers">Followers</a> <br>
+    <a href="/user/<%= tUser.id %>/following">Following</a> <br>
+    
     <% if (user.id === tUser.id) { %>
         <a href="">Edit</a>
     <% } else if(user.following.includes(tUser.id)) {%>

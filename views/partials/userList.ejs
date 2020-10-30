@@ -1,6 +1,8 @@
 <ul>
+    <% if (results.length === 0) { %>
+        <p>No results found</p>
+    <% } %>
     <% results.forEach( result => { %> 
-
         <a href="/user/<%= result.id %>">
             <%= result.displayName %> 
             @<%= result.username %> 

@@ -11,6 +11,8 @@ router.get("/", (req,res) => {
     res.render('auth/test');
 })
 
+
+
 /* index for users // will be refactored to the search show and follower/ following show */
 /* router.get('/users', async (req, res) => {
     const users = await db.Users.find();
@@ -92,6 +94,41 @@ router.get('/:id', async (req, res) => {
         res.render('auth/profile', context)
 
     } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal Server Error", err: error });
+    }
+})
+
+//render followers and following pages
+
+router.get("/:id/followers", async (req, res) => {
+    try{
+
+        const tUser = await db.User.findById(req.params.id).populate("followers");
+        const results =tUser.followers;
+        context = {
+            results: results
+        }
+        res.render("auth/followers", context)
+
+    } catch (error) {
+        console.log(error);
+        res.send({ message: "Internal Server Error", err: error });
+    }
+})
+
+router.get("/:id/following", async (req, res) => {
+    try{
+
+        const tUser = await db.User.findById(req.params.id).populate("following");
+        console.log(tUser);
+        const results = tUser.following;
+        context = {
+            results: results
+        }
+        res.render("auth/following", context)
+
+    } catch (error) {
         console.log(error);
         res.send({ message: "Internal Server Error", err: error });
     }
