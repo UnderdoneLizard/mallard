@@ -34,7 +34,7 @@ router.post('/register', async (req, res) => {
         req.body.password = hash;
         await db.User.create(req.body);
         //needs to be changed
-        res.redirect('/');
+        res.redirect('/user');
         
     } catch (error) {
         console.log(error);
@@ -65,7 +65,7 @@ router.post('/login', async (req, res) => {
             id: foundUser._id,
         }
 
-        res.redirect('/')
+        res.redirect('/user')
 
     } catch(error) {
         console.log(error);
@@ -83,8 +83,8 @@ router.delete('/logout', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try{
 
-        const tUser = await db.User.findById(req.params.id)
-        const quacks = await db.Quack.find({user: tUser.id})
+        const tUser = await db.User.findById(req.params.id);
+        const quacks = await db.Quack.find({user: tUser.id}).sort({createdAt: -1});
         const context = {
             tUser: tUser,
             quacks: quacks
@@ -106,7 +106,7 @@ router.put('/:id/follow', async (req, res) => {
         tUser.followers.push(user.id);
         user.save();
         tUser.save();
-        res.redirect('/');
+        res.redirect('/user');
     } catch(error) {
         console.log(error);
         res.send({ message: "Internal Server Error", err: error });
@@ -123,7 +123,7 @@ router.put('/:id/unfollow', async (req, res) => {
         tUser.followers.remove(user.id);
         user.save();
         tUser.save();
-        res.redirect('/');
+        res.redirect('/user');
 
     } catch(error) {
         console.log(error);
@@ -143,7 +143,7 @@ router.put('/:id/like', async (req, res) => {
         }
         user.save();
         quack.save();
-        res.redirect('/');
+        res.redirect('/user');
     } catch(error) {
         console.log(error);
         res.send({ message: "Internal Server Error", err: error });
@@ -159,7 +159,7 @@ router.put('/:id/unlike', async (req, res) => {
         quack.likes.remove(user.id);
         user.save();
         quack.save();
-        res.redirect('/');
+        res.redirect('/user');
     } catch(error) {
         console.log(error);
         res.send({ message: "Internal Server Error", err: error });
@@ -177,7 +177,7 @@ router.put('/:id/dislike', async (req,res) => {
         if(user.likes.includes(quack.id)) user.likes.remove(quack.id);
         user.save();
         quack.save();
-        res.redirect('/');
+        res.redirect('/user');
 
     } catch(error) {
         console.log(error);
