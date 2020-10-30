@@ -61,6 +61,24 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+//edit a quack
+router.get('/:id/edit', async (req,res) => {
+    try{
+
+        const quack = await db.Quack.findById(req.params.id);
+        if(req.session.currentUser.id == quack.user){
+        context = {
+            quack: quack
+        }
+        res.render('quack/edit', context)
+    }
+    res.send("you should not have seen this button")
+
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal server error" });
+    }
+})
 
 //delete quack
 

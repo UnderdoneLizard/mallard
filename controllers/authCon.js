@@ -80,6 +80,24 @@ router.delete('/logout', async (req, res) => {
     await req.session.destroy();
     res.redirect('/');
 })
+//deleteUser route
+router.delete('/delete', async (req, res) => {
+    try{
+        const delUser = await db.User.findByIdAndDelete(req.session.currentUser.id);
+        delUser.followers.forEach(async (follower) => {
+            const user = await db.User.findById(follower);
+            user.following.remove(delUser);
+        })
+        delUser.following.forEach(async (follow) => {
+            const user = await db.User.findById(follow);
+            user.followers.remove(delUser);
+        })
+        res.redirect('/')
+    } catch(error){
+        console.log(error);
+        res.send({ message: "Internal server error" })
+    }
+})
 
 //render profile page
 router.get('/:id', async (req, res) => {
@@ -222,24 +240,7 @@ router.put('/:id/dislike', async (req,res) => {
     }
 })
 
-//deleteUser route
-router.delete('/delete', async (req, res) => {
-    try{
-        const delUser = await db.User.findByIdAndDelete(req.session.currentUser.id);
-        delUser.followers.forEach(async (follower) => {
-            const user = await db.User.findById(follower);
-            user.following.remove(delUser);
-        })
-        delUser.following.forEach(async (follow) => {
-            const user = await db.User.findById(follow);
-            user.followers.remove(delUser);
-        })
-        res.redirect('/')
-    } catch(error){
-        console.log(error);
-        res.send({ message: "Internal server error" })
-    }
-})
+
 
 
 //editUser route

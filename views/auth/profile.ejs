@@ -24,9 +24,11 @@
         </form>
     <% } %> 
     <% quacks.forEach( quack => { %> 
-        <%= quack.displayName %> <br>
-        @<%= quack.username %> <br>
-        <%= quack.content %>
+        <a href="/quack/<%= quack.id %>">
+            <%= quack.displayName %> <br>
+            @<%= quack.username %> <br>
+            <%= quack.content %>
+        </a>
 
     <% }) %> 
 </body>

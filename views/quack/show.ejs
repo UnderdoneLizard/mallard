@@ -10,5 +10,8 @@
     <%= quack.displayName %> <br>
     <%= quack.username %> <br>
     <%= quack.content %> 
+    <% if (quack.user == user.id) { %>
+        <a href="/quack/<%= quack.id %>/edit">Edit</a>
+    <% } %>
 </body>
 </html>
