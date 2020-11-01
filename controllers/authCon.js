@@ -7,8 +7,16 @@ const db = require('../models');
 
 
 /* BASE TEST PATH */
-router.get("/", (req,res) => {
-    res.render('auth/test');
+router.get("/home", async (req,res) => {
+    try {
+
+        //const;
+        res.render('core/home', context);
+
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal Server Error", err: error });
+    }
 })
 
 
