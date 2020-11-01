@@ -9,8 +9,13 @@ const db = require('../models');
 /* BASE TEST PATH */
 router.get("/home", async (req,res) => {
     try {
-
-        const context = {};
+        
+        const user = await db.User.findById(req.session.currentUser.id)
+        const feed = await db.Quack.find({ user:{ $in: user.following}}).populate('user');
+        console.log(feed);
+        const context = {
+            feed: feed
+        };
 
         res.render('core/home', context);
 
