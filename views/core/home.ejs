@@ -8,8 +8,18 @@
     <title>Home</title>
 </head>
 <body>
-    <%- include("../partials/nav") %>
-    <p>you made it</p>
-    <%= feed[0] %> 
+    <div class="container">
+        <div class="column">
+            <div class="col-sm">
+                <%- include("../partials/nav") %>
+            </div>
+        </div>
+        <div class="column">
+            <div class="col-sm">
+                <p>you made it</p>
+                <%= feed[0] %> 
+            </div>
+        </div>
+    </div>
 </body>
 </html>
