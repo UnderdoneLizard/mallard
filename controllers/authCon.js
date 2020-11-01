@@ -10,7 +10,8 @@ const db = require('../models');
 router.get("/home", async (req,res) => {
     try {
 
-        //const;
+        const context = {};
+
         res.render('core/home', context);
 
     } catch(error) {
