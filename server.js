@@ -58,6 +58,8 @@ app.use('/quack', controllers.quack)
 
 app.use('/search', controllers.search)
 
+app.use('/quackBack', controllers.quack)
+
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 })
