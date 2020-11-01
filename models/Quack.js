@@ -6,7 +6,7 @@ const quackSchema = mongoose.Schema({
     //media:,
     likes: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
     dislikes: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
-    //comments:,
+    quackBacks: [{type: mongoose.Schema.Types.ObjectId, ref:"QuackBack"}],
     //reposts:,
     //reference:,
     username: {type: String},

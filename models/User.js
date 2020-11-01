@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
     following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     followers:[{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     likes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Quack'}],
-    // comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
+    quackBacks: [{type: mongoose.Schema.Types.ObjectId, ref: 'Quackback'}]
 },{
     timestamps: true
 })

@@ -12,6 +12,6 @@ const quackBackSchema = new mongoose.Schema({
     timestamps: true
 })
 
-const QuackBack = mongoose.models("Comment", quackBackSchema);
+const QuackBack = mongoose.models("QuackBack", quackBackSchema);
 
 module.exports = QuackBack;
