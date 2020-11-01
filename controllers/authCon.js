@@ -11,7 +11,7 @@ router.get("/home", async (req,res) => {
     try {
         
         const user = await db.User.findById(req.session.currentUser.id)
-        const feed = await db.Quack.find({ user:{ $in: user.following}}).populate('user');
+        const feed = await db.Quack.find({ user:{ $in: user.following}}).populate('user').sort({createdAt: -1});
         console.log(feed);
         const context = {
             feed: feed
