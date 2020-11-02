@@ -53,4 +53,23 @@ router.put('/:id/edit', async (req, res) => {
     }
 })
 
+
+router.delete('/:id/delete', async (req, res) => {
+    try {
+
+        const delQuackBack = await db.QuackBack.findByIdAndDelete(req.params.id).populate('quack').populate('user');
+        const user = delQuackBack.user;
+        const quack = delQuackBack.quack;
+        user.quackBacks.remove(delQuackBack);
+        quack.quackBacks.remove(delQuackBack);
+        user.save();
+        quack.save();
+        res.redirect(`/quack/${quack.id}`);
+
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal server error" });
+    }
+})
+
 module.exports = router;
