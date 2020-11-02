@@ -71,13 +71,12 @@ router.put('/edit', async (req, res) => {
         await db.User.findByIdAndUpdate(req.session.currentUser.id, req.body, {
             new: true
         })
-        //TODO update user photo here too 
-        const user = foundUser[0];
+/*         const user = foundUser[0];
         user.quacks.forEach( quack => {
             quack.username = req.body.username;
             quack.displayName = req.body.displayName;
             quack.save();
-        })
+        }) */
         res.redirect(`/user/${req.session.currentUser.id}`)
     } catch(error) {
         console.log(error);

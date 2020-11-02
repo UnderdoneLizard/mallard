@@ -9,8 +9,6 @@ const quackSchema = mongoose.Schema({
     quackBacks: [{type: mongoose.Schema.Types.ObjectId, ref:"QuackBack"}],
     //reposts:,
     //reference:,
-    username: {type: String},
-    displayName: {type: String},
     //userIcon:
 }, {
     timestamps: true,
