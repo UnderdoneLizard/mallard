@@ -19,7 +19,7 @@ const PORT = 3000
 app.set('view engine', 'ejs');
 
 /* middleware */
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname + '/public')));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 

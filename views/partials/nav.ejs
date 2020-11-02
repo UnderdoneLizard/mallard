@@ -10,25 +10,25 @@
             </li>
             <% if (user) { %>
                 <li class="nav-item">
-                    <a href="/user/home">Home</a>
+                    <a href="/user/home" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/user/<%= user.id %>">Profile</a>
+                    <a href="/user/<%= user.id %>" class="nav-link">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/quack/create">Quack</a>
+                    <a href="/quack/create" class="nav-link">Quack</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/search">search</a>
+                    <a href="/search" class="nav-link">Search</a>
                 </li>
                 <li class="nav-item">
                     <form action='/user/logout?_method=DELETE' method="POST">
-                        <input type="submit" value="logout"/>
+                        <input type="submit" value="logout" class="nav-link btn-light"/>
                     </form>
                 </li>
                     <% } else {%>
-                <a href="/user/register">Register</a>
-                <a href="/user/login">Login</a>
+                <a href="/user/register" class="nav-link">Register</a>
+                <a href="/user/login" class="nav-link">Login</a>
             <% } %> 
         </ul>
     <!-- </div>

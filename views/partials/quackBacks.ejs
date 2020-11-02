@@ -7,7 +7,15 @@
             <h5 class="card-title"><%= quack.user.displayName %></h5>
             <h6 class="card-subtitle">@<%= quack.user.username %></h6>
             <p class="card-text"><%= quack.content %> </p>
+            <% if (quack.user.id == user.id) { %>
+                <a href="/quackBack/<%= quack.id %>/edit" class="card-link">
+                    Edit
+                </a>
+            <% } %>
         </div>
     </div>
     
 <% }) %> 
+
+
+

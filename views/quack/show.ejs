@@ -12,29 +12,22 @@
         <div class="row">
             <%- include("../partials/nav") %> 
             <div class="col-sm">
-                <%= quack.user.displayName %> <br>
-                @<%= quack.user.username %> <br>
-                <%= quack.content %> <br> <br>
-                <% if (quack.user.id == user.id) { %>
-                    <a href="/quack/<%= quack.id %>/edit">Edit</a>
-                    <form action="/quack/<%= quack.id %>/delete?_method=DELETE" method="POST">
-                        <input type="submit" value="Delete"/>
-                    </form>
-                <% } %>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= quack.user.displayName %></h5>
+                        <h6 class="card-subtitle">@<%= quack.user.username %></h6>
+                        <p class="card-text"><%= quack.content %></p>
+                        <% if (quack.user.id == user.id) { %>
+                            <a href="/quack/<%= quack.id %>/edit" class="card-link">Edit</a>
+                            <form action="/quack/<%= quack.id %>/delete?_method=DELETE" method="POST">
+                                <input type="submit" value="Delete" class="btn btn-primary"/>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
                 <% if (quack.quackBacks.length > 0) { %>
                     <p>quack-backs</p>
-                    <% quack.quackBacks.forEach( quackBack => { %> 
-
-                        <%= quackBack.user.displayName %> <br>
-                        @<%= quackBack.user.username %> <br>
-                        <%= quackBack.content %> <br>
-                        <% if (quackBack.user.id == user.id) { %>
-                            <a href="/quackBack/<%= quackBack.id %>/edit">
-                                Edit
-                            </a> <br>
-                        <% } %>
-                            <br>
-                    <% }) %> 
+                    <%- include("../partials/quackBacks", {quackBacks: quack.quackBacks}) %> 
                 <% } %>
             </div>
             <div class="col-sm">
