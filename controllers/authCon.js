@@ -144,7 +144,7 @@ router.get('/:id', async (req, res) => {
     try{
 
         const tUser = await db.User.findById(req.params.id);
-        const quacks = await db.Quack.find({user: tUser.id}).sort({createdAt: -1});
+        const quacks = await db.Quack.find({user: tUser.id}).sort({createdAt: -1}).populate('user');
         const context = {
             tUser: tUser,
             quacks: quacks
