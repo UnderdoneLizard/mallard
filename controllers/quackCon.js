@@ -3,7 +3,8 @@ const router = express.Router();
 
 const db = require("../models");
 
-/* all posts page */
+ /* all posts page */
+/* 
 router.get('/', async (req, res) => {
     try{
 
@@ -17,8 +18,7 @@ router.get('/', async (req, res) => {
         console.log(error);
         res.send({ message: "Internal server error" });
     }
-})
-
+}) */
 
 //create quack
 // TODO render create quack page 
@@ -49,7 +49,13 @@ router.post('/create', async (req,res) => {
 router.get('/:id', async (req, res) => {
     try{
         
-        const quack = await db.Quack.findById(req.params.id);
+        const quack = await db.Quack.findById(req.params.id).populate({
+            path:'quackBacks',
+            populate: {
+                path: 'user',
+                model: 'User'
+            }
+        }).populate('user');
         context = {
             quack: quack
         };

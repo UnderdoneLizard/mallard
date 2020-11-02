@@ -54,11 +54,12 @@ app.get('/', (req, res) => {
 
 app.use('/user', controllers.auth)
 
+app.use('/quackBack', controllers.quackBack)
+
 app.use('/quack', controllers.quack)
 
 app.use('/search', controllers.search)
 
-app.use('/quackBack', controllers.quack)
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)

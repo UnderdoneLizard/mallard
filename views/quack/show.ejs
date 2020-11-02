@@ -9,14 +9,29 @@
 </head>
 <body>
     <%- include("../partials/nav") %> 
-    <%= quack.displayName %> <br>
-    <%= quack.username %> <br>
+    <%= quack.user.displayName %> <br>
+    <%= quack.user.username %> <br>
     <%= quack.content %> 
-    <% if (quack.user == user.id) { %>
+    <% if (quack.user.id == user.id) { %>
         <a href="/quack/<%= quack.id %>/edit">Edit</a>
         <form action="/quack/<%= quack.id %>/delete?_method=DELETE" method="POST">
             <input type="submit" value="Delete"/>
         </form>
     <% } %>
+    <% if (quack.quackBacks.length > 0) { %>
+        <p>quack-backs</p>
+        <% quack.quackBacks.forEach( quackBack => { %> 
+
+            <%= quackBack.user.displayName %> <br>
+            <%= quackBack.user.username %> <br>
+            <%= quackBack.content %> <br> <br>
+
+        <% }) %> 
+    <% } %>
+    <form action="/quackBack/create" method="POST">
+        <input type="text" name="content" placeholder="Quack-Back"/>
+        <input type="hidden" name="quack" value="<%= quack.id %>"/>
+        <input type="submit" value="Quack" />
+    </form>
 </body>
 </html>

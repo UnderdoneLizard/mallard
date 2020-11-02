@@ -22,5 +22,5 @@ mongoose.connection.on("disconnect", function (event) {
 module.exports = {
     User: require("./User"),
     Quack: require("./Quack"),
-    Comment: require("./QuackBack")
+    QuackBack: require("./QuackBack")
 }
