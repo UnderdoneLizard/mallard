@@ -8,15 +8,21 @@
     <title>Edit <%= user.displayName %> </title>
 </head>
 <body>
-    <%- include("../partials/nav") %> 
-    <form action="/user/edit?_method=PUT" method="POST">
-        <input type="text" name="username" value="<%= user.username %>" required />
-        <input type="text" name="displayName" value="<%= user.displayName %>" required />
-        <input type="email" name="email" value="<%= user.email %> " required />
-        <input class="btn btn-dark" type="submit" value="Update">
-    </form>
-    <% if (message) { %>
-        <%= message %> 
-    <% } %>
+    <div class="container">
+        <div class="row">
+            <%- include("../partials/nav") %> 
+            <div class="col-sm">
+                <form action="/user/edit?_method=PUT" method="POST">
+                    <input type="text" name="username" value="<%= user.username %>" required />
+                    <input type="text" name="displayName" value="<%= user.displayName %>" required />
+                    <input type="email" name="email" value="<%= user.email %> " required />
+                    <input class="btn btn-dark" type="submit" value="Update">
+                </form>
+                <% if (message) { %>
+                    <%= message %> 
+                <% } %>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

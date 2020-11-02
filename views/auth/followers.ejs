@@ -8,7 +8,13 @@
     <title>Followers</title>
 </head>
 <body>
-    <%- include("../partials/nav") %> 
-    <%- include("../partials/userList", {results: results}) %> 
+    <div class="container">
+        <div class="row">
+            <%- include("../partials/nav") %> 
+            <div class="col-sm">
+                <%- include("../partials/userList", {results: results}) %> 
+            </div>
+        </div>
+    </div>
 </body>
 </html>

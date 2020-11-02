@@ -8,13 +8,21 @@
     <title>Search</title>
 </head>
 <body>
-    <%- include("../partials/nav") %>  
-    <form action="/search" method="POST">
-        <input type="text" name="search" placeholder="Search for a user"/>
-        <input type="submit" value="search"/>
-    </form>
-    <% if (results) { %>
-        <%- include("../partials/userList", {results: results}) %> 
-    <% } %>
+    <div class="container">
+        <div class="row">
+            <%- include("../partials/nav") %>  
+            <div class="col-sm">
+                <form action="/search" method="POST">
+                    <input type="text" name="search" placeholder="Search for a user"/>
+                    <input type="submit" value="search"/>
+                </form>
+            </div>
+            <div class="col-sm">
+                <% if (results) { %>
+                    <%- include("../partials/userList", {results: results}) %> 
+                <% } %>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

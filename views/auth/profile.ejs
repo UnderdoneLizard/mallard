@@ -9,30 +9,36 @@
     <title><%= tUser.displayName %>'s page </title>
 </head>
 <body>
-    <%- include("../partials/nav") %> 
-    <%= tUser.displayName %> <br>
-    <p>@<%= tUser.username %></p> <br>
-    <a href="/user/<%= tUser.id %>/followers">Followers</a> <br>
-    <a href="/user/<%= tUser.id %>/following">Following</a> <br>
-    
-    <% if (user.id === tUser.id) { %>
-        <a href="/user/edit">Edit</a>
-    <% } else if(user.following.includes(tUser.id)) {%>
-        <form action="/user/<%= tUser.id %>/unfollow?_method=PUT" method="POST">
-            <input type="submit" value="Unfollow"/>
-        </form>
-    <% } else { %>
-        <form action="/user/<%= tUser.id %>/follow?_method=PUT" method="POST">
-            <input type="submit" value="Follow"/>
-        </form>
-    <% } %> 
-    <% quacks.forEach( quack => { %> 
-        <a href="/quack/<%= quack.id %>">
-            <%= quack.user.displayName %> <br>
-            @<%= quack.user.username %> <br>
-            <%= quack.content %> <br> <br>
-        </a>
+    <div class="container">
+        <div class="row">
+            <%- include("../partials/nav") %> 
+            <div class="col-sm">
+                <%= tUser.displayName %> <br>
+                <p>@<%= tUser.username %></p> <br>
+                <a href="/user/<%= tUser.id %>/followers">Followers</a> <br>
+                <a href="/user/<%= tUser.id %>/following">Following</a> <br>
+                
+                <% if (user.id === tUser.id) { %>
+                    <a href="/user/edit">Edit</a>
+                <% } else if(user.following.includes(tUser.id)) {%>
+                    <form action="/user/<%= tUser.id %>/unfollow?_method=PUT" method="POST">
+                        <input type="submit" value="Unfollow"/>
+                    </form>
+                <% } else { %>
+                    <form action="/user/<%= tUser.id %>/follow?_method=PUT" method="POST">
+                        <input type="submit" value="Follow"/>
+                    </form>
+                <% } %> 
+                <% quacks.forEach( quack => { %> 
+                    <a href="/quack/<%= quack.id %>">
+                        <%= quack.user.displayName %> <br>
+                        @<%= quack.user.username %> <br>
+                        <%= quack.content %> <br> <br>
+                    </a>
 
-    <% }) %> 
+                <% }) %>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
