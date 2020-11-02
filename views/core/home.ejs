@@ -6,7 +6,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- my css -->
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css">
     <title>Home</title>
 </head>
 <body>
@@ -16,9 +16,9 @@
             <div class="col-sm">
                 <% feed.forEach( quack => { %> 
 
-                    <%= quack.user.displayName %> <br>
-                    <%= quack.user.username %> <br>
-                    <%= quack.content %> <br> <br>
+                    <a href="/user/<%= quack.user.id %>"><%= quack.user.displayName %></a> <br>
+                    <a href="/user/<%= quack.user.id %>"><%= quack.user.username %></a> <br>
+                    <a href="/quack/<%= quack.id %>"><%= quack.content %></a> <br> <br>
 
                 <% }) %> 
             </div>

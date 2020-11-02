@@ -8,9 +8,16 @@
     <title>Edit</title>
 </head>
 <body>
-    <%- include("../partials/nav") %> 
-    <form action="/quack/<%= quack.id %>/edit?_method=PUT" method="POST">
-        <input type='text' required placeholder="Whats on your mind..." name="content" value="<%= quack.content %>"/>
-        <input type='submit' />
+    <div class="container">
+        <div class="row">
+            <%- include("../partials/nav") %> 
+            <div class="col-sm">
+                <form action="/quack/<%= quack.id %>/edit?_method=PUT" method="POST">
+                    <input type='text' required placeholder="Whats on your mind..." name="content" value="<%= quack.content %>"/>
+                    <input type='submit' />
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

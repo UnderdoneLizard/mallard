@@ -50,7 +50,7 @@ router.post('/register', async (req, res) => {
         req.body.password = hash;
         await db.User.create(req.body);
         //needs to be changed
-        res.redirect('/user');
+        res.redirect('/user/login');
         
     } catch (error) {
         console.log(error);
@@ -107,7 +107,7 @@ router.post('/login', async (req, res) => {
             id: foundUser._id,
         }
 
-        res.redirect('/user')
+        res.redirect('/user/home')
 
     } catch(error) {
         console.log(error);

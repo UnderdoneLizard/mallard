@@ -13,8 +13,8 @@
             <%- include("../partials/nav") %> 
             <div class="col-sm">
                 <%= quack.user.displayName %> <br>
-                <%= quack.user.username %> <br>
-                <%= quack.content %> 
+                @<%= quack.user.username %> <br>
+                <%= quack.content %> <br> <br>
                 <% if (quack.user.id == user.id) { %>
                     <a href="/quack/<%= quack.id %>/edit">Edit</a>
                     <form action="/quack/<%= quack.id %>/delete?_method=DELETE" method="POST">
@@ -26,14 +26,14 @@
                     <% quack.quackBacks.forEach( quackBack => { %> 
 
                         <%= quackBack.user.displayName %> <br>
-                        <%= quackBack.user.username %> <br>
-                        <%= quackBack.content %> <br> 
+                        @<%= quackBack.user.username %> <br>
+                        <%= quackBack.content %> <br>
                         <% if (quackBack.user.id == user.id) { %>
                             <a href="/quackBack/<%= quackBack.id %>/edit">
                                 Edit
-                            </a> <br><br>
+                            </a> <br>
                         <% } %>
-
+                            <br>
                     <% }) %> 
                 <% } %>
             </div>

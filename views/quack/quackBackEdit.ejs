@@ -6,15 +6,21 @@
     <title>Quack Back Edit</title>
 </head>
 <body>
-    <%- include("../partials/nav") %> 
-    <form action="/quackBack/<%= quackBack.id %>/edit?_method=PUT" method="POST">
-    
-        <input type="text" name="content" value="<%= quackBack.content %>" />
-        <input type="submit" value="Update Quack-Back" />
-    
-    </form>
-    <form action="/quackBack/<%= quackBack.id %>/delete?_method=DELETE" method="POST">
-        <input type="submit" value="Delete" /> 
-    </form>
+    <div class="container">
+        <div class="row">
+            <%- include("../partials/nav") %> 
+            <div class="col-sm">
+                <form action="/quackBack/<%= quackBack.id %>/edit?_method=PUT" method="POST">
+                
+                    <input type="text" name="content" value="<%= quackBack.content %>" />
+                    <input type="submit" value="Update Quack-Back" />
+                
+                </form>
+                <form action="/quackBack/<%= quackBack.id %>/delete?_method=DELETE" method="POST">
+                    <input type="submit" value="Delete" /> 
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
