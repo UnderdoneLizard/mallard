@@ -13,30 +13,27 @@
         <div class="row">
             <%- include("../partials/nav") %> 
             <div class="col-sm">
-                <%= tUser.displayName %> <br>
-                <p>@<%= tUser.username %></p> <br>
-                <a href="/user/<%= tUser.id %>/followers">Followers</a> <br>
-                <a href="/user/<%= tUser.id %>/following">Following</a> <br>
-                
-                <% if (user.id === tUser.id) { %>
-                    <a href="/user/edit">Edit</a> <br>
-                <% } else if(user.following.includes(tUser.id)) {%>
-                    <form action="/user/<%= tUser.id %>/unfollow?_method=PUT" method="POST">
-                        <input type="submit" value="Unfollow"/>
-                    </form>
-                <% } else { %>
-                    <form action="/user/<%= tUser.id %>/follow?_method=PUT" method="POST">
-                        <input type="submit" value="Follow"/>
-                    </form>
-                <% } %> 
-                <% quacks.forEach( quack => { %> 
-                    <a href="/quack/<%= quack.id %>">
-                        <%= quack.user.displayName %> <br>
-                        @<%= quack.user.username %> <br>
-                        <%= quack.content %> <br> <br>
-                    </a>
-
-                <% }) %>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= tUser.displayName %></h5>
+                        <h6 class="card-subtitle"><p>@<%= tUser.username %></p></h6>
+                        <a href="/user/<%= tUser.id %>/followers" class="card-link">Followers</a>
+                        <a href="/user/<%= tUser.id %>/following" class="card-link">Following</a>
+                        
+                        <% if (user.id === tUser.id) { %>
+                            <a href="/user/edit" class="card-link">Edit</a>
+                        <% } else if(user.following.includes(tUser.id)) {%>
+                            <form action="/user/<%= tUser.id %>/unfollow?_method=PUT" method="POST">
+                                <input type="submit" value="Unfollow" class="btn  btn-primary"/>
+                            </form>
+                        <% } else { %>
+                            <form action="/user/<%= tUser.id %>/follow?_method=PUT" method="POST">
+                                <input type="submit" value="Follow" class="btn btn-primary"/>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+                    <%- include("../partials/quacks", {quacks: quacks}) %> 
             </div>
         </div>
     </div>

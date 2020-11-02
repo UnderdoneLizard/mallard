@@ -5,10 +5,14 @@
         <p>No results found</p>
     <% } %>
     <% results.forEach( result => { %> 
-        <a href="/user/<%= result.id %>">
-            <%= result.displayName %> 
-            @<%= result.username %> 
-        </a> <br>
+        <div class="card">
+            <div class="card-body">
+                <a href="/user/<%= result.id %>">
+                    <h5 class="card-title"><%= result.displayName %></h5>
+                    <h6 class="card-subtitle">@<%= result.username %></h6>
+                </a> <br>
+            </div>
+        </div>
 
     <% }) %> 
 </ul>

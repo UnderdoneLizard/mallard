@@ -14,7 +14,7 @@ router.get("/home", async (req,res) => {
         const feed = await db.Quack.find({ user:{ $in: user.following}}).populate('user').sort({createdAt: -1});
         console.log(feed);
         const context = {
-            feed: feed
+            quacks:feed
         };
 
         res.render('core/home', context);

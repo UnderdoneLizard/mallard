@@ -14,13 +14,7 @@
         <div class="row">
             <%- include("../partials/nav") %>
             <div class="col-sm">
-                <% feed.forEach( quack => { %> 
-
-                    <a href="/user/<%= quack.user.id %>"><%= quack.user.displayName %></a> <br>
-                    <a href="/user/<%= quack.user.id %>"><%= quack.user.username %></a> <br>
-                    <a href="/quack/<%= quack.id %>"><%= quack.content %></a> <br> <br>
-
-                <% }) %> 
+                <%- include("../partials/quacks", {quacks:quacks}) %> 
             </div>
         </div>
     </div>
