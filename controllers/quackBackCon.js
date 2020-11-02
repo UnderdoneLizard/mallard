@@ -24,4 +24,33 @@ router.post('/create', async (req,res) => {
     }
 })
 
+// edit routes
+router.get('/:id/edit', async (req, res) => {
+    const quackBack = await db.QuackBack.findById(req.params.id).populate('user');
+    const user = await db.User.findById(req.session.currentUser.id);
+    context = {
+        quackBack: quackBack
+    }
+    if(user.id = quackBack.user.id){
+        res.render('quack/quackBackEdit', context)
+    } else {
+        res.redirect(`/quack/${quackBack.quack}`)
+    }
+})
+
+
+router.put('/:id/edit', async (req, res) => {
+    try {
+
+        const quackBack = await db.QuackBack.findByIdAndUpdate(req.params.id, req.body, {
+            new: true
+        })
+        res.redirect(`/quack/${quackBack.quack}`)
+
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal server error" });
+    }
+})
+
 module.exports = router;

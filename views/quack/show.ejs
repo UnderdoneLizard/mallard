@@ -24,7 +24,12 @@
 
             <%= quackBack.user.displayName %> <br>
             <%= quackBack.user.username %> <br>
-            <%= quackBack.content %> <br> <br>
+            <%= quackBack.content %> <br> 
+            <% if (quackBack.user.id == user.id) { %>
+                <a href="/quackBack/<%= quackBack.id %>/edit">
+                    Edit
+                </a> <br><br>
+            <% } %>
 
         <% }) %> 
     <% } %>
