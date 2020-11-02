@@ -16,8 +16,13 @@
         </div>
         <div class="column">
             <div class="col-sm">
-                <p>you made it</p>
-                <%= feed[0] %> 
+                <% feed.forEach( quack => { %> 
+
+                    <%= quack.user.displayName %> <br>
+                    <%= quack.user.username %> <br>
+                    <%= quack.content %> <br> <br>
+
+                <% }) %> 
             </div>
         </div>
     </div>
