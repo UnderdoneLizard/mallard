@@ -17,9 +17,10 @@ const app = express();
 /* config */
 const PORT = 3000
 app.set('view engine', 'ejs');
+app.set('public', path.join(__dirname, 'public'));
 
 /* middleware */
-app.use(express.static(path.join(__dirname + '/public')));
+app.use(express.static(path.join(__dirname , 'public')));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 
