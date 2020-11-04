@@ -237,7 +237,7 @@ router.put('/:id/like', async (req, res) => {
         }
         user.save();
         quack.save();
-        res.redirect('/user');
+        res.redirect(`/quack/${quack.id}`);
     } catch(error) {
         console.log(error);
         res.send({ message: "Internal Server Error", err: error });
@@ -253,7 +253,7 @@ router.put('/:id/unlike', async (req, res) => {
         quack.likes.remove(user.id);
         user.save();
         quack.save();
-        res.redirect('/user');
+        res.redirect(`/quack/${quack.id}`);
     } catch(error) {
         console.log(error);
         res.send({ message: "Internal Server Error", err: error });
@@ -271,7 +271,7 @@ router.put('/:id/dislike', async (req,res) => {
         if(user.likes.includes(quack.id)) user.likes.remove(quack.id);
         user.save();
         quack.save();
-        res.redirect('/user');
+        res.redirect(`/quack/${quack.id}`);
 
     } catch(error) {
         console.log(error);

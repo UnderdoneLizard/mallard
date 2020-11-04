@@ -12,9 +12,30 @@
                         <% if (quack.user.id == user.id) { %>
                             <a href="/quack/<%= quack.id %>/edit" class="card-link">Edit</a>
                             <form action="/quack/<%= quack.id %>/delete?_method=DELETE" method="POST">
-                                <input type="submit" value="Delete" class="btn btn-primary"/>
+                                <input type="submit" value="Delete" class="btn btn-danger"/>
                             </form>
-                        <% } %>
+                        <% } else { %>
+                            <% if (quack.likes.includes(user.id)) { %>
+                                <!--un-Like button -->
+                                <form action="/user/<%= quack.id %>/unLike?_method=put" method="POST">
+                                    <input type="submit" value="un-Like" class="btn btn-info"/>
+                                </form>
+                            <% } else { %>
+                                <!-- like button -->
+                                <form action="/user/<%= quack.id %>/like?_method=put" method="POST">
+                                    <input type="submit" value="Like" class="btn btn-primary"/>
+                                </form>
+                            <% } %> 
+                            <% if (quack.dislikes.includes(user.id)) { %>
+                                <!-- grey dislike button -->
+                                <button class="btn btn-secondary">Dis-Like</button>
+                            <% } else {%>
+                                <!-- dislike button -->
+                                <form action="/user/<%= quack.id %>/dislike?_method=put" method="POST">
+                                    <input type="submit" value="Dis-Like" class="btn btn-danger"/>
+                                </form>
+                            <% } %> 
+                        <% } %> 
                     </div>
                 </div>
                 <% if (quack.quackBacks.length > 0) { %>
