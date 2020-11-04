@@ -9,6 +9,12 @@
                 <h6 class="card-subtitle">@<%= quack.user.username %></h6>
             </a>
             <a href="/quack/<%= quack.id %>"><p class="card-text"><%= quack.content %> </p></a>
+            <% if (quack.likes) { %>
+                <a href="/quack/<%= quack.id %>/likes"><p class="card-link"><%= quack.likes.length %> likes </p></a>
+                <% } %>
+            <% if (quack.dislikes) { %>
+                <a href="/quack/<%= quack.id %>/dislikes"><p class="card-link"><%= quack.dislikes.length %> dis-likes </p></a>
+            <% } %>
         </div>
     </div>
     

@@ -101,6 +101,38 @@ router.put("/:id/edit", async (req, res) => {
     }
 })
 
+//show likes and dislikes page
+router.get("/:id/likes", async (req,res) => {
+    try{
+
+        const quack = await db.Quack.findById(req.params.id).populate("likes");
+        const context = {
+            results: quack.likes,
+            title: "Likes"
+        }
+        res.render("auth/userList", context);
+
+    } catch (error){
+        console.log(error);
+        res.send({ message: "Internal server error" });
+    }
+})
+router.get("/:id/dislikes", async (req,res) => {
+    try{
+
+        const quack = await db.Quack.findById(req.params.id).populate("dislikes");
+        const context = {
+            results: quack.dislikes,
+            title: "Dis-Likes"
+        }
+        res.render("auth/userList", context);
+
+    } catch (error){
+        console.log(error);
+        res.send({ message: "Internal server error" });
+    }
+})
+
 //delete quack
 
 router.delete('/:id/delete', async (req, res) => {

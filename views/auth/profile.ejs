@@ -16,7 +16,9 @@
                         <a href="/user/<%= tUser.id %>/following" class="card-link">Following</a>
                         
                         <% if (user.id === tUser.id) { %>
-                            <a href="/user/edit" class="card-link">Edit</a>
+                            <form>
+                                <a href="/user/edit" class="card-link btn btn-info">Edit</a>
+                            </form>
                         <% } else if(user.following.includes(tUser.id)) {%>
                             <form action="/user/<%= tUser.id %>/unfollow?_method=PUT" method="POST">
                                 <input type="submit" value="Unfollow" class="btn  btn-primary"/>

@@ -164,9 +164,10 @@ router.get("/:id/followers", async (req, res) => {
         const tUser = await db.User.findById(req.params.id).populate("followers");
         const results =tUser.followers;
         context = {
-            results: results
+            results: results,
+            title: "Followers"
         }
-        res.render("auth/followers", context)
+        res.render("auth/userList", context)
 
     } catch (error) {
         console.log(error);
@@ -181,9 +182,10 @@ router.get("/:id/following", async (req, res) => {
         console.log(tUser);
         const results = tUser.following;
         context = {
-            results: results
+            results: results,
+            title: "Following"
         }
-        res.render("auth/following", context)
+        res.render("auth/userList", context)
 
     } catch (error) {
         console.log(error);
