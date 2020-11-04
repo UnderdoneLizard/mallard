@@ -4,7 +4,8 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 const path = require('path');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 
 const MongoStore = require("connect-mongo")(session)
@@ -22,7 +23,7 @@ const app = express();
 /* config */
 const PORT = 3000
 app.set('view engine', 'ejs');
-app.set('public', path.join(__dirname, 'public'));
+app.use(express.static( path.join(__dirname, 'public')));
 
 /* //settings for image upload copied from https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/
 app.use(bodyParser.urlencoded({ extended: false })) 
@@ -70,7 +71,7 @@ app.get('/', (req, res) => {
         res.redirect("/user/home");
     } else {
         
-        res.render('auth/test')
+        res.render('auth/landing')
     }
 })
 
@@ -120,12 +121,12 @@ app.post('/login', async (req, res) => {
         const foundUser = await db.User.findOne({email: req.body.email});
         if(!foundUser) {
             //needs to be changed
-            return res.render('auth/login', {message:"Email or Passowrd Incorrect"});
+            return res.render('login', {message:"Email or Passowrd Incorrect"});
         }
         const match = await bcrypt.compare(req.body.password, foundUser.password);
         if(!match){
              //needs to be changed
-            return res.render('auth/login', {message:"Email or Passowrd Incorrect"});
+            return res.render('login', {message:"Email or Passowrd Incorrect"});
         }
         req.session.currentUser = {
             username: foundUser.username,

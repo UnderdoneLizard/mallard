@@ -8,6 +8,7 @@ const db = require('../models');
 
 /* BASE TEST PATH */
 router.get("/home", async (req,res) => {
+    console.log(req.file)
     try {
         
         const user = await db.User.findById(req.session.currentUser.id)
@@ -99,6 +100,28 @@ router.get('/:id', async (req, res) => {
         res.render('auth/profile', context)
 
     } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal Server Error", err: error });
+    }
+})
+
+//render likes
+router.get("/:id/likes", async (req,res) => {
+    try{
+
+        const tUser = await db.User.findById(req.params.id).populate({
+            path:"likes",
+            populate:{
+                path:"user",
+                model: "User"
+            }
+        })
+
+        context = {
+            tUser : tUser
+        }
+        res.render('auth/likes', context)
+    } catch(error){
         console.log(error);
         res.send({ message: "Internal Server Error", err: error });
     }

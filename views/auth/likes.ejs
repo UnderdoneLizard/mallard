@@ -1,0 +1,18 @@
+<%- include("../partials/header", {title: `${tUser.displayName}'s likes`}) %> 
+<body>
+    <div class="container">
+        <div class="row">
+            <%- include("../partials/nav") %>
+            <div class="col-sm-6">
+                <div class="card">
+                    <h3 class="card-header"><%= tUser.displayName %>'s Likes</h1>
+                    <div class="card-body">
+                        <%- include("../partials/quacks", {quacks:tUser.likes}) %> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include("../partials/bootScripts") %> 
+</body>
+</html>

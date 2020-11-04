@@ -1,6 +1,6 @@
-body {
-    background-color: black;
+.input {
+    text-align: center;
+    background-color: transparent;
+    border: none;
 }
-.container {
-    margin: 0;
-}
+
