@@ -59,7 +59,7 @@ app.use(async (req, res, next) => {
 
 const authRequired = function(req, res, next) {
     if(!req.session.currentUser) {
-        return res.redirect("/user/login")
+        return res.redirect("/")
     }
     next();
 }
@@ -74,16 +74,71 @@ app.get('/', (req, res) => {
     }
 })
 
-app.use('/user',controllers.auth)
+app.use('/user',authRequired, controllers.auth)
 
-app.use('/quackBack', controllers.quackBack)
+app.use('/quackBack',authRequired, controllers.quackBack)
 
-app.use('/quack', controllers.quack)
+app.use('/quack',authRequired, controllers.quack)
 
-app.use('/search', controllers.search)
+app.use('/search',authRequired, controllers.search)
 
 // app.use('/upload', controllers.upload)
 
+//login and register routes because I messed up
+// register route
+app.get('/register', async (req, res) => {
+    res.render('auth/register', {message:''})
+})
+
+app.post('/register', async (req, res) => {
+    console.log(req.body);
+    try{
+        const foundUser = await db.User.findOne({$or:[{email: req.body.email}, {username: req.body.username}]})
+        //needs to be changed
+        if(foundUser) return res.render("auth/register", {message:'Username or Email taken, please use another'})
+
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(req.body.password, salt);
+        req.body.password = hash;
+        await db.User.create(req.body);
+        //needs to be changed
+        res.redirect('/login');
+        
+    } catch (error) {
+        console.log(error);
+        res.send({ message: "Internal Server Error", err: error });
+    }
+})
+// login route
+
+app.get('/login', async (req, res) => {
+    res.render('auth/login', {message:''})
+})
+
+app.post('/login', async (req, res) => {
+    try {
+        const foundUser = await db.User.findOne({email: req.body.email});
+        if(!foundUser) {
+            //needs to be changed
+            return res.render('auth/login', {message:"Email or Passowrd Incorrect"});
+        }
+        const match = await bcrypt.compare(req.body.password, foundUser.password);
+        if(!match){
+             //needs to be changed
+            return res.render('auth/login', {message:"Email or Passowrd Incorrect"});
+        }
+        req.session.currentUser = {
+            username: foundUser.username,
+            id: foundUser._id,
+        }
+
+        res.redirect('/user/home')
+
+    } catch(error) {
+        console.log(error);
+        res.send({ message: "Internal Server Error", err: error });
+    }
+})
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
