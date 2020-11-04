@@ -3,6 +3,9 @@ const express = require('express');
 const methodOverride = require("method-override");
 const session = require("express-session");
 const path = require('path');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose')
+
 
 const MongoStore = require("connect-mongo")(session)
 
@@ -14,11 +17,18 @@ const db = require('./models')
 
 const app = express();
 
+
+
 /* config */
 const PORT = 3000
 app.set('view engine', 'ejs');
 app.set('public', path.join(__dirname, 'public'));
 
+/* //settings for image upload copied from https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/
+app.use(bodyParser.urlencoded({ extended: false })) 
+*/
+//might need this according to video https://youtu.be/3f5Q9wDePzY
+app.use(bodyParser.json())
 /* middleware */
 app.use(express.static(path.join(__dirname , 'public')));
 app.use(express.urlencoded({extended: true}));
@@ -60,6 +70,8 @@ app.use('/quackBack', controllers.quackBack)
 app.use('/quack', controllers.quack)
 
 app.use('/search', controllers.search)
+
+app.use('/upload', controllers.upload)
 
 
 app.listen(PORT, () => {

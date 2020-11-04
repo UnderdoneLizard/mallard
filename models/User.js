@@ -9,7 +9,9 @@ const userSchema = mongoose.Schema({
     following: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     followers:[{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     likes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Quack'}],
-    quackBacks: [{type: mongoose.Schema.Types.ObjectId, ref: 'Quackback'}]
+    quackBacks: [{type: mongoose.Schema.Types.ObjectId, ref: 'Quackback'}],
+    //userIcon: {type: mongoose.Schema.Types.ObjectId, ref: 'Photos.File'},
+    // userBannar: {type: mongoose.Schema.Types.ObjectId, ref: 'Photos'},
 },{
     timestamps: true
 })

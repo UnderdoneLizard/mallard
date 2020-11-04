@@ -26,7 +26,6 @@ router.get("/home", async (req,res) => {
 })
 
 
-
 /* index for users // will be refactored to the search show and follower/ following show */
 /* router.get('/users', async (req, res) => {
     const users = await db.Users.find();
@@ -143,7 +142,7 @@ router.delete('/delete', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try{
 
-        const tUser = await db.User.findById(req.params.id);
+        const tUser = await db.User.findById(req.params.id).populate('userIcon');
         const quacks = await db.Quack.find({user: tUser.id}).sort({createdAt: -1}).populate('user');
         const context = {
             tUser: tUser,

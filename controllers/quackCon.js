@@ -105,13 +105,24 @@ router.put("/:id/edit", async (req, res) => {
 
 router.delete('/:id/delete', async (req, res) => {
     try{
-        const quack = await db.Quack.findById(req.params.id);
+        const quack = await db.Quack.findById(req.params.id)
         if (req.session.currentUser.id == quack.user){
-            const delQuack = await db.Quack.findByIdAndDelete(req.params.id);
-            delQuack.likes.forEach(async (like) =>{
-                const user = await db.User.findById(like);
-                user.likes.remove(delQuack);
+            const delQuack = await db.Quack.findByIdAndDelete(req.params.id).populate({
+                path:"quackBacks",
+                populate:{
+                    path: "user",
+                    model:"User"
+                }
+            }).populate("likes");
+
+            delQuack.likes.forEach( (user) =>{
+                user.likes.remove(delQuack.id);
                 user.save();
+            })
+            delQuack.quackBacks.forEach( async (quackBack) => {
+                quackBack.user.quackBacks.remove(quackBack.id);
+                quackBack.user.save();
+                await db.QuackBack.findByIdAndDelete(quackBack.id);
             })
             res.redirect(`/user/${req.session.currentUser.id}`);
         } else {
