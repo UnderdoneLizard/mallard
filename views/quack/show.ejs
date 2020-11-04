@@ -5,6 +5,7 @@
             <%- include("../partials/nav") %> 
             <div class="col-sm">
                 <div class="card">
+                    <h3 class="card-header"><%= quack.user.displayName %>'s Quack</h3>
                     <div class="card-body">
                         <h5 class="card-title"><%= quack.user.displayName %></h5>
                         <h6 class="card-subtitle">@<%= quack.user.username %></h6>
@@ -39,8 +40,12 @@
                     </div>
                 </div>
                 <% if (quack.quackBacks.length > 0) { %>
-                    <p>quack-backs</p>
-                    <%- include("../partials/quackBacks", {quackBacks: quack.quackBacks}) %> 
+                    <div class="card">
+                        <h3 class="card-header">Quack-Backs</h3>
+                        <div class="card-body">
+                            <%- include("../partials/quackBacks", {quackBacks: quack.quackBacks}) %> 
+                        </div>
+                    </div>
                 <% } %>
             </div>
             <div class="col-sm">

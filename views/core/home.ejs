@@ -5,22 +5,22 @@
             <%- include("../partials/nav") %>
             <div class="col-sm-6">
                 <div class="card">
+                    <h3 class="card-header">Quacks</h1>
                     <div class="card-body">
-                        <h3 class="card-title">Quacks</h1>
+                        <%- include("../partials/quacks", {quacks:quacks}) %> 
                     </div>
                 </div>
-                <%- include("../partials/quacks", {quacks:quacks}) %> 
             </div>
             <div class="col-sm">
                 <div class="card">
+                    <h3 class="card-header">Quack</h6>
                     <div class="card-body">
-                        <h3 class="card-title">Quack</h6>
+                        <form action="/quack/create" method="POST">
+                            <textarea type='text' required placeholder="Whats on your mind..." name="content" ></textarea>
+                            <input type='submit' />
+                        </form>
                     </div>
                 </div>
-                <form action="/quack/create" method="POST">
-                    <textarea type='text' required placeholder="Whats on your mind..." name="content" ></textarea>
-                    <input type='submit' />
-                </form>
             </div>
         </div>
     </div>

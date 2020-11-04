@@ -5,14 +5,14 @@
             <%- include("../partials/nav") %>  
             <div class="col-sm-3">
                 <div class="card">
+                    <h3 class="card-header">Search</h3>
                     <div class="card-body">
-                        <h3 class="card-title">Search</h3>
+                        <form action="/search" method="POST">
+                            <input type="text" name="search" placeholder="Search for a user"/>
+                            <input type="submit" value="search" class="btn btn-primary"/>
+                        </form>
                     </div>
                 </div>
-                <form action="/search" method="POST">
-                    <input type="text" name="search" placeholder="Search for a user"/>
-                    <input type="submit" value="search"/>
-                </form>
             </div>
             <div class="col-sm">
                 <% if (results) { %>

@@ -5,20 +5,20 @@
         <p>No results found</p>
     <% } else { %>
         <div class="card">
+            <h3 class="card-header">Users</h3>
             <div class="card-body">
-                <h3 class="card-title">Users</h3>
+                <% results.forEach( result => { %> 
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="/user/<%= result.id %>">
+                                <h5 class="card-title"><%= result.displayName %></h5>
+                                <h6 class="card-subtitle">@<%= result.username %></h6>
+                            </a> <br>
+                        </div>
+                    </div>
+            
+                <% }) %> 
             </div>
         </div>
     <% } %> 
-    <% results.forEach( result => { %> 
-        <div class="card">
-            <div class="card-body">
-                <a href="/user/<%= result.id %>">
-                    <h5 class="card-title"><%= result.displayName %></h5>
-                    <h6 class="card-subtitle">@<%= result.username %></h6>
-                </a> <br>
-            </div>
-        </div>
-
-    <% }) %> 
 </ul>

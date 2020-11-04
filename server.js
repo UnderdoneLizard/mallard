@@ -51,8 +51,8 @@ app.use(session({
 app.use(async (req, res, next) => {
     if(req.session.currentUser){
     res.locals.user = await db.User.findById(req.session.currentUser.id);
-    }else{
-        user = undefined;
+    }else {
+        res.locals.user = undefined;
     }
     next();
 })
@@ -60,7 +60,12 @@ app.use(async (req, res, next) => {
 
 /* Routes */
 app.get('/', (req, res) => {
-    res.render('auth/test')
+    if(req.session.currentUser){
+        res.redirect("/user/home");
+    } else {
+        
+        res.render('auth/test')
+    }
 })
 
 app.use('/user', controllers.auth)
