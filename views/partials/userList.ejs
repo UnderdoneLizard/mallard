@@ -3,7 +3,13 @@
 <ul>
     <% if (results.length === 0) { %>
         <p>No results found</p>
-    <% } %>
+    <% } else { %>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Users</h3>
+            </div>
+        </div>
+    <% } %> 
     <% results.forEach( result => { %> 
         <div class="card">
             <div class="card-body">

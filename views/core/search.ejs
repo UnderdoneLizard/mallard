@@ -3,7 +3,12 @@
     <div class="container">
         <div class="row">
             <%- include("../partials/nav") %>  
-            <div class="col-sm">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Search</h3>
+                    </div>
+                </div>
                 <form action="/search" method="POST">
                     <input type="text" name="search" placeholder="Search for a user"/>
                     <input type="submit" value="search"/>
@@ -16,5 +21,6 @@
             </div>
         </div>
     </div>
+    <%- include("../partials/bootScripts") %> 
 </body>
 </html>

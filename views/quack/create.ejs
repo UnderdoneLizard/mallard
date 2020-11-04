@@ -3,7 +3,12 @@
     <div class="container">
         <div class="row">
             <%- include("../partials/nav") %> 
-            <div class="col-sm">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Quack</h3>
+                    </div>
+                </div>
                 <form action="/quack/create" method="POST">
                     <textarea type='text' required placeholder="Whats on your mind..." name="content" ></textarea>
                     <input type='submit' />
@@ -11,5 +16,6 @@
             </div>
         </div>
     </div>
+    <%- include("../partials/bootScripts") %> 
 </body>
 </html>
