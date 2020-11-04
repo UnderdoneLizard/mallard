@@ -8,7 +8,9 @@
                     <h3 class="card-header">Edit Quack</h3>
                     <div class="card-body">
                         <form action="/quack/<%= quack.id %>/edit?_method=PUT" method="POST">
-                            <input type='text' required placeholder="Whats on your mind..." name="content" value="<%= quack.content %>"/>
+                            <div class="form-group">
+                                <input type='text' required placeholder="Whats on your mind..." name="content" value="<%= quack.content %>" class="form-control"/>
+                            </div>
                             <input type='submit' class="btn btn-primary"/>
                         </form>
 

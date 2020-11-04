@@ -54,9 +54,11 @@
             </div>
             <div class="col-sm">
                 <form action="/quackBack/create" method="POST">
+                    <div class="form-group">
+                        <input type="hidden" name="quack" value="<%= quack.id %>" class="form-control"/>
+                    </div>
                     <input type="text" name="content" placeholder="Quack-Back"/>
-                    <input type="hidden" name="quack" value="<%= quack.id %>"/>
-                    <input type="submit" value="Quack" />
+                    <input type="submit" value="Quack" class="btn btn-primary"/>
                 </form>
             </div>
         </div>

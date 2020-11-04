@@ -16,8 +16,10 @@
                     <h3 class="card-header">Quack</h6>
                     <div class="card-body">
                         <form action="/quack/create" method="POST">
-                            <textarea type='text' required placeholder="Whats on your mind..." name="content" ></textarea>
-                            <input type='submit' />
+                            <div class="form-group">
+                                <textarea type='text' required placeholder="Whats on your mind..." name="content" class="form-control"></textarea>
+                            </div>
+                            <input type='submit' class="btn btn-primary" />
                         </form>
                     </div>
                 </div>

@@ -4,21 +4,23 @@
         <div class="row">
             <%- include("../partials/nav") %> 
             <div class="col-sm">
-                <form action="/login" method="POST">
-                    <div class="form-group">
-                    <input type="email" name="email" placeholder="Email" required/>
+                <div class="card">
+                    <h3 class="card-header">Login</h3>
+                    <div class="card-body">
+                        <form action="/login" method="POST">
+                            <div class="form-group">
+                            <input type="email" name="email" placeholder="Email" required class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                            <input  type="password" name="password" placeholder="Password" required class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                            <input class="btn btn-primary" type="submit" value="Login">
+                            </div>
+                        </form>
+
                     </div>
-                    <div class="form-group">
-                    <input  type="password" name="password" placeholder="Password" required />
-                    </div>
-                    <div class="form-group">
-                    <input class="btn btn-dark" type="submit" value="Login">
-                    </div>
-                    
-                </form>
-                <form action="/register" method="GET">
-                    <input class="btn btn-dark" type="submit" value="register">
-                </form>
+                </div>
                 <% if (message) { %>
                     <%= message %> 
                 <% } %>

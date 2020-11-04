@@ -18,6 +18,7 @@ router.post('/', async (req, res) => {
         console.log(results);
         context = {
             results: results,
+            title: "Search Results"
         };
         res.render('core/search', context);
 
