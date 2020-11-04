@@ -57,6 +57,12 @@ app.use(async (req, res, next) => {
     next();
 })
 
+const authRequired = function(req, res, next) {
+    if(!req.session.currentUser) {
+        return res.redirect("/user/login")
+    }
+    next();
+}
 
 /* Routes */
 app.get('/', (req, res) => {
@@ -68,7 +74,7 @@ app.get('/', (req, res) => {
     }
 })
 
-app.use('/user', controllers.auth)
+app.use('/user',controllers.auth)
 
 app.use('/quackBack', controllers.quackBack)
 
@@ -76,7 +82,7 @@ app.use('/quack', controllers.quack)
 
 app.use('/search', controllers.search)
 
-app.use('/upload', controllers.upload)
+// app.use('/upload', controllers.upload)
 
 
 app.listen(PORT, () => {
