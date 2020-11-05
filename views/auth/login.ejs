@@ -13,6 +13,11 @@
                             </div>
                             <div class="form-group">
                             <input  type="password" name="password" placeholder="Password" required class="form-control"/>
+                            <% if (message) { %>
+                                <small class="form-text text-muted">
+                                    <%= message %> 
+                                </small>
+                            <% } %>
                             </div>
                             <div class="form-group">
                             <input class="btn btn-primary" type="submit" value="Login">
@@ -21,9 +26,6 @@
 
                     </div>
                 </div>
-                <% if (message) { %>
-                    <%= message %> 
-                <% } %>
             </div>
         </div>
     </div>

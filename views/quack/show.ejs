@@ -39,8 +39,8 @@
                                 </form>
                             <% } %> 
                             <% } %> 
-                            <a href="/quack/<%= quack.id %>/likes" class="card-link">Likes</a>
-                            <a href="/quack/<%= quack.id %>/dislikes" class="card-link">Dis-Likes</a>
+                            <a href="/quack/<%= quack.id %>/likes" class="card-link">Likes: <%= quack.likes.length %> </a>
+                            <a href="/quack/<%= quack.id %>/dislikes" class="card-link">Dis-Likes: <%= quack.dislikes.length %> </a>
                     </div>
                 </div>
                 <% if (quack.quackBacks.length > 0) { %>
@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 <input type="hidden" name="quack" value="<%= quack.id %>" class="form-control"/>
                             </div>
-                            <input type="text" name="content" placeholder="..."/>
+                            <textarea type='text' required name="content" placeholder="..." class="form-control"></textarea>
                             <input type="submit" value="Quack" class="btn btn-primary"/>
                         </form>
                     </div>

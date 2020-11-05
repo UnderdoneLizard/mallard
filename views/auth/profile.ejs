@@ -12,8 +12,8 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= tUser.displayName %></h5>
                         <h6 class="card-subtitle"><p>@<%= tUser.username %></p></h6>
-                        <a href="/user/<%= tUser.id %>/followers" class="card-link">Followers</a>
-                        <a href="/user/<%= tUser.id %>/following" class="card-link">Following</a>
+                        <a href="/user/<%= tUser.id %>/followers" class="card-link">Followers: <%= tUser.followers.length %> </a>
+                        <a href="/user/<%= tUser.id %>/following" class="card-link">Following: <%= tUser.following.length %> </a>
                         <a href="/user/<%= tUser.id %>/likes" class="card-link">Likes</a>
                         <% if (user.id === tUser.id) { %>
                             <form>

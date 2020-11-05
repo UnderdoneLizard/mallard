@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <form action="/quackBack/<%= quackBack.id %>/edit?_method=PUT" method="POST">
                             <div class="form-group">
-                                <input type="text" name="content" value="<%= quackBack.content %>" class="card-input" class="form-control"/>
+                                <textarea type='text' required name="content" class="form-control"><%= quackBack.content %></textarea>
                             </div>
                             <input type="submit" value="Update Quack-Back" class="btn btn-primary" />
                         
