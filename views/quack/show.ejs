@@ -4,7 +4,7 @@
         <div class="row">
             <%- include("../partials/nav") %> 
             <div class="col-sm">
-                <div class="card">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
                     <h3 class="card-header"><%= quack.user.displayName %>'s Quack</h3>
                     <div class="card-body">
                         <h5 class="card-title"><%= quack.user.displayName %></h5>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <% if (quack.quackBacks.length > 0) { %>
-                    <div class="card">
+                    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
                         <h3 class="card-header">Quack-Backs</h3>
                         <div class="card-body">
                             <%- include("../partials/quackBacks", {quackBacks: quack.quackBacks}) %> 
@@ -53,13 +53,18 @@
                 <% } %>
             </div>
             <div class="col-sm">
-                <form action="/quackBack/create" method="POST">
-                    <div class="form-group">
-                        <input type="hidden" name="quack" value="<%= quack.id %>" class="form-control"/>
+                <div class="card">
+                    <h3 class="card-header">Quack-Back</h3>
+                    <div class="card-body">
+                        <form action="/quackBack/create" method="POST">
+                            <div class="form-group">
+                                <input type="hidden" name="quack" value="<%= quack.id %>" class="form-control"/>
+                            </div>
+                            <input type="text" name="content" placeholder="..."/>
+                            <input type="submit" value="Quack" class="btn btn-primary"/>
+                        </form>
                     </div>
-                    <input type="text" name="content" placeholder="Quack-Back"/>
-                    <input type="submit" value="Quack" class="btn btn-primary"/>
-                </form>
+                </div>
             </div>
         </div>
     </div>

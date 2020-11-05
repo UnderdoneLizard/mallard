@@ -4,7 +4,7 @@
         <div class="row">
             <%- include("../partials/nav") %>
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
                     <h3 class="card-header">Quacks</h1>
                     <div class="card-body">
                         <%- include("../partials/quacks", {quacks:quacks}) %> 
@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="col-sm">
-                <div class="card">
+                <div class="card shadow-sm p-3 mb-5 bg-white rounded">
                     <h3 class="card-header">Quack</h6>
                     <div class="card-body">
                         <form action="/quack/create" method="POST">
