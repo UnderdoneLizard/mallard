@@ -121,12 +121,12 @@ app.post('/login', async (req, res) => {
         const foundUser = await db.User.findOne({email: req.body.email});
         if(!foundUser) {
             //needs to be changed
-            return res.render('login', {message:"Email or Passowrd Incorrect"});
+            return res.render('auth/login', {message:"Email or Passowrd Incorrect"});
         }
         const match = await bcrypt.compare(req.body.password, foundUser.password);
         if(!match){
              //needs to be changed
-            return res.render('login', {message:"Email or Passowrd Incorrect"});
+            return res.render('auth/login', {message:"Email or Passowrd Incorrect"});
         }
         req.session.currentUser = {
             username: foundUser.username,
